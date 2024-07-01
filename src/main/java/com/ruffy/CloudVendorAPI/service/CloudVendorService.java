@@ -1,6 +1,7 @@
 package com.ruffy.CloudVendorAPI.service;
 
 
+import com.ruffy.CloudVendorAPI.exception.CloudVendorNotFoundException;
 import com.ruffy.CloudVendorAPI.model.CloudVendor;
 import com.ruffy.CloudVendorAPI.repository.CloudVendorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,10 @@ public class CloudVendorService {
 //    }
 
     public CloudVendor getById(int vendorId){
+
+        if(cloudVendorRepository.findById(vendorId).isEmpty()){
+            throw new CloudVendorNotFoundException("Requested vendor does not exist");
+        }
         return cloudVendorRepository.findById(vendorId).get();
     }
 

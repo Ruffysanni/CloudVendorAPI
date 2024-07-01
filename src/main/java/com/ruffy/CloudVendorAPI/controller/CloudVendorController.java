@@ -5,6 +5,8 @@ import com.ruffy.CloudVendorAPI.service.CloudVendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/cloudvendor")
 public class CloudVendorController {
@@ -15,15 +17,16 @@ public class CloudVendorController {
 //        this.cloudVendorService = cloudVendorService;
 //    }
 
-    @GetMapping("/{vendorId}")
+    @GetMapping("/vendor/{vendorId}")
     public String getCloudVendorById(@PathVariable int vendorId){
         cloudVendorService.getById(vendorId);
         return "Vendor with id: " + vendorId + " returned successfully.";
     }
 
     @GetMapping("/all-cloudvendors")
+//    public List<CloudVendor> getAllCloudVendors(){
     public String getAllCloudVendors(){
-        cloudVendorService.getAllVendors();
+//        return cloudVendorService.getAllVendors();
         return "All vendors successfully fetched!";
     }
     @PostMapping("/vendor")
